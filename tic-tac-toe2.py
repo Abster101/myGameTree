@@ -172,3 +172,15 @@ while True:
                     turn = 'player'
     if not playAgain():
         break
+#performs a decision based on the minimaxValue method
+#returns the option with the highest value
+def minimaxDecision(board):
+    for op in range(1,board):
+        Value(op)- minimaxValue(Apply(op,game),game)
+    return op
+
+#goes through the whole game tree, all the way to the leaves,
+#to determine the backed-up value of a state
+def minimaxValue(state,board,depth):
+    if isWinner(theBoard, playerLetter):
+                
