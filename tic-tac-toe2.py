@@ -2,7 +2,6 @@
 #Filename: tic-tac-toe2.py
 #Description: AI Tic-Tac-Toe game using back tracking.
 #Source:
-
 import random
 
 def drawBoard(board):
@@ -34,7 +33,7 @@ def inputPlayerLetter():
 #changed the variable name
 def isFirst():
     #random generator will decide who is first
-    if random.randit(0,1) ==0:
+    if random.uniform(0,1) ==0:
         return 'computer'
     else:
         return 'player'
@@ -161,7 +160,7 @@ while True:
             makeMove(theBoard, computerLetter, move)
             if isWinner(theBoard, computerLetter):
                 drawBoard(theBoard)
-                print('The computer has beaten you! You lose.')
+                getBoardCopy('The computer has beaten you! You lose.')
                 gameIsPlaying = False
             else:
                 if isBoardFull(theBoard):
@@ -172,15 +171,40 @@ while True:
                     turn = 'player'
     if not playAgain():
         break
+
 #performs a decision based on the minimaxValue method
 #returns the option with the highest value
-def minimaxDecision(board):
-    for op in range(1,board):
-        Value(op)- minimaxValue(Apply(op,game),game)
-    return op
+#def minimaxDecision(board):
+#    for op in range(1,board):
+#        if value = 1
+ #       Value(op)- minimaxValue(Apply(op,game),game)
+  #  return op
+
 
 #goes through the whole game tree, all the way to the leaves,
 #to determine the backed-up value of a state
-def minimaxValue(state,board,depth):
+def minimaxValue(board):
+    # First, check if we can win in the next move
+
+    for i in range(1, 10):
+        copy = getBoardCopy(board)
+        if isValid(copy, i):
+            makeMove(copy, computerLetter, i)
+            if isWinner(theBoard, playerLetter):
+                value=  10
+            if isWinner(board,computerLetter):
+                value= -10
+            else:
+                value= 0
+    move = getPlayerMove(theBoard)
+    makeMove(theBoard, playerLetter, move)
     if isWinner(theBoard, playerLetter):
-                
+         value=  10
+    if isWinner(board,computerLetter):
+        value= -10
+    else:
+        value= 0
+    return move
+
+        
+      
